@@ -6,10 +6,12 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
         while (true){
+            Scanner sc = new Scanner(System.in);
             try {
                 System.out.println("Creando socket servidor");
                 ServerSocket serverSocket = new ServerSocket();
@@ -28,7 +30,8 @@ public class App {
                 is.read(mensaje);
                 System.out.println("Mensaje recibido: " + new String(mensaje));
                 //Enviar mensaje al cliente
-                os.write("Mensaje recibido".getBytes());
+                String mensajeEnviar = sc.nextLine();
+                os.write(mensajeEnviar.getBytes());
                 System.out.println("Mensaje enviado");
                 System.out.println("Cerrando el socket servidor");
                 serverSocket.close();
